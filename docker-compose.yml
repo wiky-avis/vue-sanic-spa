@@ -53,3 +53,21 @@ services:
       - .env
     links:       
       - adminer
+
+  api: 
+    container_name: test_api
+    build: 
+      context: ./api
+    tty: true
+    restart: always
+    volumes: 
+      - "./api:/app"    
+    links:
+      - "db" 
+      - "redis"     
+    networks:      
+      - internal
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
