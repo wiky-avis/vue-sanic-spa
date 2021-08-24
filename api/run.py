@@ -1,13 +1,14 @@
 import os
-from sanic import Sanic
 from sanic.response import json
 
-app = Sanic()
+import application
+
+app = application.create('api')
 
 
 @app.route("/")
 async def test(request):
-    return json({"hello": "world"})
+    return json({"hello": "world!"})
 
 if __name__ == "__main__":
     debug_mode = os.getenv('API_MODE', '') == 'dev'
