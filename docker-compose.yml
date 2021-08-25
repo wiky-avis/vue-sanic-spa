@@ -71,3 +71,18 @@ services:
       - .env
     ports:
       - "8000:8000"
+
+  ws: 
+    container_name: test_ws
+    build: 
+      context: ./ws
+    tty: true
+    restart: always
+    volumes: 
+      - "./ws:/app"    
+    links:      
+      - "redis"     
+    networks:      
+      - internal
+    env_file:
+      - .env
