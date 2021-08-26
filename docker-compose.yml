@@ -86,3 +86,15 @@ services:
       - internal
     env_file:
       - .env
+
+  app:
+    container_name: test_app
+    build: ./app
+    tty: true
+    user: "${UID}:${GID}"
+    volumes:
+      - "./app:/app"
+    networks:
+    - internal    
+    env_file:
+      - .env
